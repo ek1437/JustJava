@@ -1,8 +1,8 @@
 # JustJava
 
 ## This project is about combining various ideas and skills:
-* Create app that lets users place order for Coffee.
-* Create an intent to open the email app and populate with customers order.
+* An app that lets users place order for Coffee.
+* Add an intent to open the email app and populate with customers order.
 * Create the basic structure of a single-screen app by
 placing layouts on a page and integrating images, buttons,
 and text.
