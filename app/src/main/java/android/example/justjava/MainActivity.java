@@ -1,3 +1,16 @@
+/*
+ * *
+ *  * Created by Eshawn Karim on 10/30/20 10:42 PM
+ *  * Last modified 10/30/20 10:41 PM
+ *  *
+ *  * MainActivity.java
+ *  * Just Java
+ *  *
+ *  * www.EshawnKarim.us
+ *  * Copyright (c) 2020.
+ *
+ */
+
 package android.example.justjava;
 
 import android.content.Intent;
@@ -9,9 +22,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.NumberFormat;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,26 +47,25 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         displayQuantity(quantity);
 
-        //For Whipped Cream
-        CheckBox checkBox = findViewById(R.id.checkBox);
-        boolean whippedCream = checkBox.isChecked();
+        //For Whipped Cream topping.
+        CheckBox whippedCreamCheckBox = findViewById(R.id.whippedCreamCheckBox);
+        boolean addWhippedCream = whippedCreamCheckBox.isChecked();
 
-        //For Chocolate
         CheckBox chocolateCheckBox = findViewById(R.id.checkBoxChocolate);
-        boolean chocolate = chocolateCheckBox.isChecked();
+        boolean addChocolate = chocolateCheckBox.isChecked();
 
         EditText name = findViewById(R.id.textInputEditTextName);
         String customerName = name.getText().toString();
 
 
         String orderSummary = createOrderSummary(
-                calculatePrice(quantity, price, whippedCream, chocolate),
-                whippedCream,
-                chocolate,
+                calculatePrice(quantity, price, addWhippedCream, addChocolate),
+                addWhippedCream,
+                addChocolate,
                 customerName
         );
 
-        composeEmail("JustJava order for " + customerName, orderSummary);
+        composeEmail(getString(R.string.email_order_tag) + customerName, orderSummary);
     }
 
     /**
@@ -81,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increment(View view) {
         if (quantity == 100) {
-            Toast.makeText(this, "You cannot have more than 100 coffees!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.more_than_100_coffee_toast), Toast.LENGTH_LONG).show();
             return;
         }
         displayQuantity(++quantity);
@@ -94,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void decrement(View view) {
         if (quantity == 1) {
-            Toast.makeText(this, "You cannot have less than 1 coffee!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.less_than_one_coffee_toast), Toast.LENGTH_LONG).show();
             return;
         }
         displayQuantity(--quantity);
@@ -106,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void displayQuantity(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText(String.valueOf(number));
     }
 
     /**
@@ -118,19 +133,27 @@ public class MainActivity extends AppCompatActivity {
      * @param hasChocolate    for Chocolate.
      * @param name            of the person making the order.
      */
-    private String createOrderSummary(int total,
-                                      boolean hasWhippedCream,
-                                      boolean hasChocolate,
-                                      String name) {
-        return "Name: " + name +
-                "\nAdd whipped Cream? " + hasWhippedCream +
-                "\nAdd Chocolate? " + hasChocolate +
-                "\nQuantity: " + quantity +
-                "\nTotal: " + NumberFormat.getCurrencyInstance().format(total) +
-                "\nThank You!";
+
+
+    private @NotNull String createOrderSummary(int total,
+                                               boolean hasWhippedCream,
+                                               boolean hasChocolate,
+                                               String name) {
+        return getString(R.string.order_summary_name, name) + //string resource uses the xliff placeholder tag for name
+                "\n" + getString(R.string.order_summary_add_whipped_cream) + hasWhippedCream +
+                "\n" + getString(R.string.order_summary_add_chocolate) + hasChocolate +
+                "\n" + getString(R.string.order_summary_quantity) + quantity +
+                "\n" + getString(R.string.order_summary_total) + NumberFormat.getCurrencyInstance().format(total) +
+                "\n" + getString(R.string.thank_you);
 
     }
 
+    /**
+     * Creates intent to open email app and fill out the email with subject and body.
+     *
+     * @param subject of the email
+     * @param message content of the email.
+     */
     public void composeEmail(String subject, String message) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this

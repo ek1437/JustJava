@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Eshawn Karim on 10/30/20 10:40 PM
+  ~  * Last modified 10/30/20 10:40 PM
+  ~  *
+  ~  * strings.xml
+  ~  * Just Java
+  ~  *
+  ~  * www.EshawnKarim.us
+  ~  * Copyright (c) 2020.
+  ~  */
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Just Java</string>
+    <string name="name">Nombre</string>
+    <string name="toppings">Aderezos</string>
+    <string name="quantity">Cantidad</string>
+    <string name="whipped_cream">Crema batida</string>
+    <string name="order">Orden</string>
+    <string name="thank_you">¡Gracias!</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="less_than_one_coffee_toast">¡No puedes tomar menos de 1 café!</string>
+    <string name="more_than_100_coffee_toast">¡No puedes tener más de 100 cafés!</string>
+    <string name="email_order_tag">"Pedido de JustJava para "</string>
+    <string name="order_summary_name">Nombre: <xliff:g example="Amy" id="name">%s</xliff:g></string>
+    <string name="order_summary_add_whipped_cream">"¿Agregar crema batida? "</string>
+    <string name="order_summary_add_chocolate">"¿Agregar chocolate? "</string>
+    <string name="order_summary_quantity">"Cantidad: "</string>
+    <string name="order_summary_total">"Total: "</string>
+</resources>
