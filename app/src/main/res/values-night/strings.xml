@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Eshawn Karim on 10/30/20 10:40 PM
+  ~  * Last modified 10/30/20 7:30 PM
+  ~  *
+  ~  * strings.xml
+  ~  * Just Java
+  ~  *
+  ~  * www.EshawnKarim.us
+  ~  * Copyright (c) 2020.
+  ~  */
+  -->
+
+<resources>
+    <string name="name">Name</string>
+    <string name="chocolate">Chocolate</string>
+</resources>
